@@ -1,15 +1,27 @@
 pipeline {
+
 	agent any
-		stages {
-			stage('One') {
-				steps {
-					echo 'Hi, This is Stage 1'
-				      }
+	stages {
+
+			stage ('Build') {
+
+					steps {
+							echo 'This is my first Declarative Script'
+						  }
+					}
+		
+		    stage ('Test') {
+
+			steps {
+					echo 'This is my first Declarative Script'
 			}
-			stage('Two') {
-				steps {
-					echo 'Hi, This is Stage 2'
-				      }
-			}
+
+			stage ('Deploy') {
+
+			steps {
+					echo 'This is my first Declarative Script'
+			}			
+		}		
 	}
+
 }
