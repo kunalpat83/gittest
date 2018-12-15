@@ -1,21 +1,22 @@
 pipeline {
-	agent any
-	stages {
-		stage ('Build') {
-				steps {
-					echo 'This is my first Declarative Script and for Build'
-				      }
-				}
-		
-	        stage ('Test') {
-			steps {
-					echo 'This is my first Declarative Script for Test'
-			}
-		}	
-		stage ('Deploy') {
-			steps {
-					echo 'This is my first Declarative Script for Deploy'
-			}			
-		}		
-	}
+		 agent none
+		 stages {
+		 		stage ('Build')
+		 		{
+		 		 agnet docker{ docker 'maven:3-alpine' }
+		 			steps{
+		 					echo 'Hello maven'
+		 					sh 'maven --version'
+		 			}
+		 		}
+		 		stage ('Test')
+		 		{
+		 		 agnet docker{ docker 'openjdk:8-jre' }
+		 			steps{
+		 					echo 'Hello JDK'
+		 					sh 'java -version'
+		 			}
+		 		}
+
+		 }
 }
