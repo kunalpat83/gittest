@@ -1,19 +1,31 @@
 pipeline {
-	agent any
-	parameters {
-		string(name: 'KUNAL',default: '',description: 'THIS IS MY NAME')
-		text(name: 'JENKINS',default: 'TEST',description: 'LEARNING JENKINS')
-		choice(name: 'CHOICE',choices['one','two','three'],description: 'Choose any one')
-		password(name: 'Password',default: 'secret',description: 'enter the password')
-		file(name: 'filename', description: 'Enter the name of the file to upload')
-	}
+    agent any
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
-	stages {
-			stage('Build') {
-							steps {
-									echo "Hello ${params.KUNAL}"
-									echo "Select any ${params.CHOICE}"
-							}
-						}
-	}
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+
+        file(name: "FILE", description: "Choose a file to upload")
+    }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
+            }
+        }
+    }
 }
